@@ -1,4 +1,7 @@
 const http=require('http');
+const fs=require('fs');
+
+const homepage=fs.readFileSync('./index.html', 'utf8');
 
 http.createServer((req,res)=>{
     //res.writeHead(200,{'content-type':'text/html'});  -> global, so it will be applied to all responses.
@@ -10,7 +13,7 @@ http.createServer((req,res)=>{
 
     if(req.url==='/'){
         res.writeHead(200,{'content-type':'text/html'});
-        res.end('<h1> welcome to home page</h1>');
+        res.end(homepage);
     }
 
     else if(req.url==='/about'){
